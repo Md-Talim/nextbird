@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import '../globals.css';
 import Topbar from '@/components/shared/Topbar';
 import Bottombar from '@/components/shared/Bottombar';
+import LeftSidebar from '@/components/shared/LeftSidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <Topbar />
           <section className="main-container">
-            {/* LeftSideBar */}
+            <LeftSidebar />
             <div className="w-full max-w-4xl">{children}</div>
             {/* RightSideBar */}
           </section>
