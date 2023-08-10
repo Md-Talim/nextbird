@@ -3,7 +3,7 @@ import { currentUser } from '@clerk/nextjs';
 
 const f = createUploadthing();
 
-const getUser = async () => await currentUser(); // Fake auth function
+const getUser = async () => await currentUser();
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
