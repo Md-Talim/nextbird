@@ -18,6 +18,8 @@ import * as z from 'zod';
 import { Textarea } from '../ui/textarea';
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
+import { updateUser } from '@/lib/actions/user.actions';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
   user: {
@@ -34,6 +36,8 @@ interface Props {
 const AccountProfile = ({ user, btnTitle }: Props) => {
   const [files, setFiles] = useState<File[]>([]);
   const { startUpload } = useUploadThing('media');
+  const pathname = usePathname();
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(userValidation),
@@ -83,6 +87,21 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       if (imageRes && imageRes[0].fileUrl) {
         values.profile_photo = imageRes[0].fileUrl;
       }
+    }
+
+    await updateUser({
+      userId: user.id,
+      name: values.name,
+      username: values.username,
+      bio: values.bio,
+      image: values.profile_photo,
+      path: pathname,
+    });
+
+    if (pathname === '/profile/edit') {
+      router.back();
+    } else {
+      router.push('/');
     }
   };
 
@@ -187,7 +206,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         />
 
         <Button type="submit" className="bg-primary-500">
-          Submit
+          {btnTitle}
         </Button>
       </form>
     </Form>
