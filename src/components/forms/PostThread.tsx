@@ -7,12 +7,15 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
+import { Textarea } from '../ui/textarea';
+import { createThread } from '@/lib/actions/thread.actions';
 import { threadValidation } from '@/lib/validations/thread';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { usePathname, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { Textarea } from '../ui/textarea';
+import * as z from 'zod';
 
 const PostThread = ({ userId }: { userId: string }) => {
   const pathname = usePathname();
@@ -22,11 +25,20 @@ const PostThread = ({ userId }: { userId: string }) => {
     resolver: zodResolver(threadValidation),
     defaultValues: {
       thread: '',
-      accountId: '',
+      accountId: userId,
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async (values: z.infer<typeof threadValidation>) => {
+    await createThread({
+      text: values.thread,
+      author: userId,
+      communityId: null,
+      path: pathname,
+    });
+
+    router.push('/');
+  };
 
   return (
     <Form {...form}>
@@ -38,17 +50,14 @@ const PostThread = ({ userId }: { userId: string }) => {
           control={form.control}
           name="thread"
           render={({ field }) => (
-            <FormItem className="flex flex-col w-full gap-2">
+            <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="text-base-semibold text-light-2">
                 Content
               </FormLabel>
-              <FormControl className="flex-1 text-base-semibold text-gray-200">
-                <Textarea
-                  rows={15}
-                  className="account-form_input no-focus"
-                  {...field}
-                />
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
+                <Textarea rows={15} {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />

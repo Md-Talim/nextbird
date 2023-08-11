@@ -3,7 +3,7 @@ import { fetchUser } from '@/lib/actions/user.actions';
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
-const Page = async () => {
+async function Page() {
   const user = await currentUser();
 
   if (!user) return null;
@@ -15,9 +15,9 @@ const Page = async () => {
   return (
     <>
       <h1 className="head-text">Create Thread</h1>
-      <PostThread userId={user.id} />
+      <PostThread userId={userInfo._id} />
     </>
   );
-};
+}
 
 export default Page;
