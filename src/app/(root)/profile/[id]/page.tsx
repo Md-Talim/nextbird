@@ -1,8 +1,9 @@
 import ProfileHeader from '@/components/shared/ProfileHeader';
+import ThreadsTab from '@/components/shared/ThreadsTab';
 import { profileTabs } from '@/constants';
 import { fetchUser } from '@/lib/actions/user.actions';
 import { currentUser } from '@clerk/nextjs';
-import { Tabs, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
@@ -46,6 +47,19 @@ async function Page({ params }: { params: { id: string } }) {
               </TabsTrigger>
             ))}
           </TabsList>
+          {profileTabs.map((tab) => (
+            <TabsContent
+              key={`content-${tab.label}`}
+              value={tab.value}
+              className="w-full text-light-1"
+            >
+              <ThreadsTab
+                currentUserId={user.id}
+                accountId={userInfo.id}
+                accountType="User"
+              />
+            </TabsContent>
+          ))}
         </Tabs>
       </div>
     </section>
