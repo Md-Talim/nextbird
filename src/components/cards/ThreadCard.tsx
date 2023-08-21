@@ -1,22 +1,23 @@
+import { formatDateString } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface Props {
   author: { id: string; name: string; image: string };
   comments: { author: { image: string } }[];
-  commuity: { id: string; name: string; image: string };
+  community: { id: string; name: string; image: string } | null;
   content: string;
   createdAt: string;
   currentUserId: string;
   id: string;
   isComment?: boolean;
-  parentId: string;
+  parentId: string | null;
 }
 
 const ThreadCard = ({
   author,
   comments,
-  commuity,
+  community,
   content,
   createdAt,
   currentUserId,
@@ -99,6 +100,25 @@ const ThreadCard = ({
           </div>
         </div>
       </div>
+      {!isComment && community && (
+        <Link
+          href={`/communities/${community.id}`}
+          className="mt-5 flex items-center"
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)}
+            {community && ` - ${community.name} Community`}
+          </p>
+
+          <Image
+            src={community.image}
+            alt={community.name}
+            width={14}
+            height={14}
+            className="ml-1 rounded-full object-cover"
+          />
+        </Link>
+      )}
     </article>
   );
 };
