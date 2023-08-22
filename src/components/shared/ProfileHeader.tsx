@@ -3,19 +3,21 @@ import Image from 'next/image';
 interface Props {
   accountId: string;
   authUserId: string;
-  name: string;
-  username: string;
   bio: string;
   imageUrl: string;
+  name: string;
+  type?: 'User' | 'Community';
+  username: string;
 }
 
 const ProfileHeader = ({
   accountId,
   authUserId,
-  name,
-  username,
   bio,
   imageUrl,
+  name,
+  type,
+  username,
 }: Props) => {
   return (
     <div className="flex w-full flex-col justify-start">
