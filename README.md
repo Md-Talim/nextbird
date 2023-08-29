@@ -1,36 +1,75 @@
-# NextBird (A Threads Clone) (Uncomplete)
+# Nextbird Project
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Nextbird is a social media application built using the following technologies:
+
+- Next.js
+- TypeScript
+- MongoDB
+- Tailwind CSS
+- Shadcn UI
+- Clerk (for authentication)
+- UploadThing (for handling image uploads)
+
+This project serves as a practical implementation of concepts learned from a YouTube tutorial, with additional features and enhancements planned to be developed independently.
+
+![Nextbird Screenshot](./public/nextbird.png)
+
+## Features
+
+- User authentication and authorization using Clerk.
+- Post creation and viewing.
+- Commenting on posts.
+- Image uploads handled by UploadThing.
+- Responsive design with Tailwind CSS and Headless UI components.
 
 ## Getting Started
 
-First, run the development server:
+To get started with the project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone the repository: `git clone https://github.com/md-talim/nextbird.git`
+2. Navigate to the project directory: `cd nextbird`
+3. Install the dependencies: `yarn`
+4. Create a `.env.local` file in the root directory and add the following environment variables:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=XXX
+   CLERK_SECRET_KEY=XXX
+   NEXT_CLERK_WEBHOOK_SECRET=XXX
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/onboarding
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+   MONGODB_PASS=XXX
+   MONGODB_URL=XXX
+   UPLOADTHING_SECRET=XXX
+   UPLOADTHING_APP_ID=XXX
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Run the development server: `yarn run dev`
+6. Open your browser and visit: `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Additional Features (To-Do)
 
-## Learn More
+The Nextbird project aims to go beyond the tutorial by implementing the following features:
 
-To learn more about Next.js, take a look at the following resources:
+- [ ] **Like Posts:** Allow users to like posts and display the total number of likes.
+- [ ] **Delete Posts:** Implement the ability for users to delete their own posts.
+- [ ] **Search for Accounts:** Develop a search functionality to find user accounts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Contributions are welcome! If you would like to contribute to this project by adding new features, fixing bugs, or enhancing the user experience, please follow these steps:
 
-## Deploy on Vercel
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature-name`
+3. Make your changes and commit them: `git commit -m "Add feature-name"`
+4. Push to the branch: `git push origin feature-name`
+5. Create a pull request outlining your changes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Acknowledgements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project was initially built by following a YouTube tutorial (provide link or tutorial name). The foundational structure and concepts were learned from this resource. The enhancements and additional features were developed independently by the owner of this repository.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
