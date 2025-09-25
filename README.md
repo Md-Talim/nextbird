@@ -22,6 +22,10 @@ This project serves as a practical implementation of concepts learned from a You
 - Image uploads handled by UploadThing.
 - Responsive design with Tailwind CSS and Headless UI components.
 
+## Project Status
+This project was completed in 2023 as part of my learning with Next.js and TypeScript.  
+The original deployment has been taken down, but the application can be run locally.
+
 ## Getting Started
 
 To get started with the project, follow these steps:
